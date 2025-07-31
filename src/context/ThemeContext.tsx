@@ -1,16 +1,11 @@
 // src/context/ThemeContext.tsx
+import { themes } from "@/utils/theme";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import type { DefaultTheme } from "styled-components/dist/types";
 
 const STORAGE_KEY = "app-theme";
 
-const defaultTheme: DefaultTheme = {
-  style: 1,
-  backgroundColor: "red",
-  color: "#000",
-  fontWeight: "400",
-  font: "'Inter', sans-serif",
-};
+const defaultTheme: DefaultTheme = themes.light;
 
 interface ThemeContextProps {
   appTheme: DefaultTheme;

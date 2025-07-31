@@ -7,5 +7,6 @@ declare module "styled-components" {
     color: string;
     fontWeight: string;
     font: string;
+    borderColor: string;
   }
 }

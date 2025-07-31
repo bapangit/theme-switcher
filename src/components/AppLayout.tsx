@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { RiImageCircleFill } from "react-icons/ri";
 import type { DefaultTheme } from "styled-components/dist/types";
 import { useAppTheme } from "@/context/ThemeContext";
+import { themes } from "@/utils/theme";
 
 const Header = styled.header`
   display: flex;
@@ -13,6 +14,7 @@ const Header = styled.header`
   padding: 0.5rem;
   background-color: ${({ theme }: any) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
+  border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 `;
 
 const Logo = styled.h1`
@@ -59,41 +61,17 @@ const DropdownMenu = styled.ul<{ $open: boolean }>`
     cursor: pointer;
 
     &:hover {
-      /* background-color: #f3f4f6; */
+      background-color: #4a4a4a5d;
     }
   }
 `;
 
 const Main = styled.main``;
 
-const lightTheme: DefaultTheme = {
-  style: 1,
-  backgroundColor: "#ffffff",
-  color: "#000000",
-  fontWeight: "400",
-  font: "'Inter', sans-serif",
-};
-
-const darkTheme: DefaultTheme = {
-  style: 2,
-  backgroundColor: "#121212",
-  color: "#ffffff",
-  fontWeight: "400",
-  font: "'Inter', sans-serif",
-};
-
-const redTheme: DefaultTheme = {
-  style: 3,
-  backgroundColor: "#ff0000",
-  color: "#ffffff",
-  fontWeight: "400",
-  font: "'Inter', sans-serif",
-};
-
 const themeItems = [
-  { name: "Light", theme: lightTheme },
-  { name: "dark", theme: darkTheme },
-  { name: "red", theme: redTheme },
+  { name: "Light", theme: themes.light },
+  { name: "dark", theme: themes.dark },
+  { name: "red", theme: themes.red },
 ];
 
 const AppLayout: React.FC = () => {
