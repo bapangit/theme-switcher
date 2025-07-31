@@ -15,7 +15,7 @@ const darkTheme: DefaultTheme = {
   color: "#ffffff",
   fontWeight: "700",
   font: "'Inter', sans-serif",
-  borderColor: "#000",
+  borderColor: "#292929ff",
 };
 
 const redTheme: DefaultTheme = {
@@ -24,7 +24,7 @@ const redTheme: DefaultTheme = {
   color: "#ffffff",
   fontWeight: "400",
   font: "'Inter', sans-serif",
-  borderColor: "red",
+  borderColor: "#c03c3cff",
 };
 
 export const themes = {

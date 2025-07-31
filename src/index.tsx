@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
+    background-color: ${({ theme }) => theme.backgroundColor};
     font-weight: ${({ theme }) => theme.fontWeight};
     font-family: ${({ theme }) => theme.font};
   }

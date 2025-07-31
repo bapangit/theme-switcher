@@ -12,7 +12,7 @@ const Header = styled.header`
   align-items: center;
   background-color: orange;
   padding: 0.5rem;
-  background-color: ${({ theme }: any) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
   border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 `;
@@ -91,7 +91,7 @@ const AppLayout: React.FC = () => {
 
         <DropdownContainer>
           <DropdownButton onClick={() => setDropdownOpen((prev) => !prev)}>
-            Menu ▾
+            Choose Theme ▾
           </DropdownButton>
 
           <DropdownMenu $open={dropdownOpen}>
