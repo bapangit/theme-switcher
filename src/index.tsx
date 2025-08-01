@@ -1,12 +1,14 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { AppThemeProvider, useAppTheme } from "@/context/ThemeContext.tsx";
 
 const GlobalStyles = createGlobalStyle`
+body{
+  min-height: 101vh;
+}
   *{
     margin: 0;
     padding: 0;
@@ -15,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: ${({ theme }) => theme.fontWeight};
     font-family: ${({ theme }) => theme.font};
   }
+
 `;
 
 const ThemedApp: React.FC = () => {

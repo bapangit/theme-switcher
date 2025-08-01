@@ -5,7 +5,6 @@ import styled, { css, keyframes } from "styled-components";
 
 const PageWrapper = styled.div`
   padding: 30px;
-  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,11 +35,9 @@ interface AnimatedBoxProps {
 }
 
 const IntroText = styled.p<AnimatedBoxProps>`
-  max-width: 700px;
   margin: 0 auto 30px;
   font-size: 16px;
   color: ${({ theme }) => theme.color};
-  text-align: center;
   line-height: 1.6;
   opacity: 0;
   ${({ $isanimating }) =>
@@ -135,10 +132,15 @@ function Home() {
   return (
     <PageWrapper>
       <IntroText $isanimating={isAnimating}>
-        Welcome to our posts page. Here you can explore interesting topics
-        shared by users. Each card below contains a short title and description
-        for quick reading.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </IntroText>
+
       <GridContainer $isanimating={isAnimating}>
         {posts.map((post) => (
           <Card key={post.id}>
