@@ -150,8 +150,9 @@ const AppLayout: React.FC = () => {
           </DropdownButton>
 
           <DropdownMenu $open={dropdownOpen}>
-            {themeItems.map((item) => (
+            {themeItems.map((item, i) => (
               <li
+                key={i}
                 onClick={() => {
                   handleClickThemeItem(item.theme);
                 }}
