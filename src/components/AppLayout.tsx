@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Outlet } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link, Outlet } from "react-router-dom";
 import { RiImageCircleFill } from "react-icons/ri";
 import type { DefaultTheme } from "styled-components/dist/types";
 import { useAppTheme } from "@/context/ThemeContext";
 import { themes } from "@/utils/theme";
 
+const headerHeight = 3;
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: orange;
-  padding: 0.5rem;
+  padding: 0rem 0.5rem;
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
   border-bottom: 1px solid ${({ theme }) => theme.borderColor};
+  height: ${headerHeight}rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 `;
 
 const Logo = styled.h1`
@@ -34,7 +39,7 @@ const DropdownButton = styled.button`
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  background-color: ${({ theme }: any) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
 
   &:hover {
@@ -50,10 +55,10 @@ const DropdownMenu = styled.ul<{ $open: boolean }>`
   padding: 0.5rem 0;
   margin: 0;
   border-radius: 0.25rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px ${({ theme }) => theme.borderColor};
   display: ${({ $open }) => ($open ? "block" : "none")};
   min-width: 150px;
-  background-color: ${({ theme }: any) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
 
   li {
@@ -62,6 +67,56 @@ const DropdownMenu = styled.ul<{ $open: boolean }>`
 
     &:hover {
       background-color: #4a4a4a5d;
+    }
+  }
+`;
+
+const BodyContainer = styled.div<{}>`
+  display: flex;
+`;
+
+const SideBar = styled.ul<{}>`
+  position: sticky;
+  height: calc(100vh - ${headerHeight}rem);
+  max-width: 10rem;
+  min-width: 10rem;
+  top: ${headerHeight}rem;
+  z-index: 100;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.color};
+  border-right: 1px solid ${({ theme }) => theme.borderColor};
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0.4rem;
+  ${({ theme }) =>
+    theme.style === 2
+      ? css`
+          display: block;
+        `
+      : css`
+          display: none;
+        `}
+  li {
+    list-style: none;
+
+    a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: ${({ theme }) => theme.color};
+      font-weight: ${({ theme }) => theme.fontWeight};
+      transition: background-color 0.2s ease, color 0.2s ease;
+      background-color: ${({ theme }) => theme.backgroundColor};
+      border-radius: 0.2rem;
+      &:hover {
+        opacity: 0.8;
+        background-color: ${({ theme }) => theme.borderColor};
+      }
+
+      &.active {
+        color: ${({ theme }) => theme.borderColor};
+        font-weight: 700;
+      }
     }
   }
 `;
@@ -107,10 +162,28 @@ const AppLayout: React.FC = () => {
           </DropdownMenu>
         </DropdownContainer>
       </Header>
-
-      <Main>
-        <Outlet />
-      </Main>
+      <BodyContainer>
+        <SideBar>
+          <li>
+            <Link to="/" onClick={() => {}}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={() => {}}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={() => {}}>
+              Contact
+            </Link>
+          </li>
+        </SideBar>
+        <Main>
+          <Outlet />
+        </Main>
+      </BodyContainer>
     </>
   );
 };

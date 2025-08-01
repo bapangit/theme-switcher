@@ -24,7 +24,7 @@ const redTheme: DefaultTheme = {
   color: "#ffffff",
   fontWeight: "400",
   font: "'Inter', sans-serif",
-  borderColor: "#c03c3cff",
+  borderColor: "#efefefff",
 };
 
 export const themes = {
