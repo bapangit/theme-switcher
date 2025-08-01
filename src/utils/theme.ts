@@ -23,7 +23,7 @@ const redTheme: DefaultTheme = {
   backgroundColor: "#ff0000",
   color: "#ffffff",
   fontWeight: "400",
-  font: "'Inter', sans-serif",
+  font: "'Pacifico', cursive",
   borderColor: "#efefefff",
 };
 

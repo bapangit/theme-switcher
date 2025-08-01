@@ -3,6 +3,7 @@ import { getUserPosts, type Post } from "@/service/posts";
 import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
+// Wrapper for the page content
 const PageWrapper = styled.div`
   padding: 30px;
   display: flex;
@@ -10,6 +11,7 @@ const PageWrapper = styled.div`
   justify-content: center;
 `;
 
+// Animation for cards sliding in
 const cardAnim = keyframes`
   0% {
     opacity: 0;
@@ -21,6 +23,7 @@ const cardAnim = keyframes`
   }
 `;
 
+// Animation for intro text fading in
 const slideIn = keyframes`
   0% {
     opacity: 0;
@@ -30,10 +33,12 @@ const slideIn = keyframes`
   }
 `;
 
+// Props for animated components
 interface AnimatedBoxProps {
   $isanimating?: boolean;
 }
 
+// Styled intro text with animation
 const IntroText = styled.p<AnimatedBoxProps>`
   margin: 0 auto 30px;
   font-size: 16px;
@@ -50,6 +55,7 @@ const IntroText = styled.p<AnimatedBoxProps>`
         `}
 `;
 
+// Grid container for post cards with animation
 const GridContainer = styled.div<AnimatedBoxProps>`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -79,6 +85,7 @@ const GridContainer = styled.div<AnimatedBoxProps>`
   }
 `;
 
+// Individual post card styling
 const Card = styled.div<{}>`
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.borderColor};
@@ -104,10 +111,12 @@ const Card = styled.div<{}>`
   }
 `;
 
+// Home page component
 function Home() {
-  const { appTheme } = useAppTheme();
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const { appTheme } = useAppTheme(); // Get current theme
+  const [isAnimating, setIsAnimating] = useState<boolean>(false); // Animation state
 
+  // Trigger animation on theme change
   useEffect(() => {
     setIsAnimating(true);
     const task = setTimeout(() => {
@@ -119,8 +128,9 @@ function Home() {
   }, [appTheme]);
 
   /* Fetch Posts */
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]); // State for posts
 
+  // Fetch posts on mount
   useEffect(() => {
     getUserPosts()
       .then((response) => {
@@ -129,8 +139,10 @@ function Home() {
       .catch((err) => console.error("Error fetching posts:", err));
   }, []);
 
+  // Render page
   return (
     <PageWrapper>
+      {/* Intro text with animation */}
       <IntroText $isanimating={isAnimating}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -141,6 +153,7 @@ function Home() {
         mollit anim id est laborum.
       </IntroText>
 
+      {/* Grid of post cards with animation */}
       <GridContainer $isanimating={isAnimating}>
         {posts.map((post) => (
           <Card key={post.id}>
