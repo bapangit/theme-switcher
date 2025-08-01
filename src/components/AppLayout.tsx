@@ -6,7 +6,10 @@ import type { DefaultTheme } from "styled-components/dist/types";
 import { useAppTheme } from "@/context/ThemeContext";
 import { themes } from "@/utils/theme";
 
+// Header height constant
 const headerHeight = 3;
+
+// Styled header component
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -22,6 +25,7 @@ const Header = styled.header`
   z-index: 100;
 `;
 
+// Styled logo component
 const Logo = styled.h1`
   font-size: 1.5rem;
   font-weight: bold;
@@ -30,11 +34,13 @@ const Logo = styled.h1`
   gap: 5px;
 `;
 
+// Dropdown container for theme selection
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
 `;
 
+// Dropdown button styling
 const DropdownButton = styled.button`
   border: none;
   font-size: 1rem;
@@ -47,6 +53,7 @@ const DropdownButton = styled.button`
   }
 `;
 
+// Dropdown menu styling
 const DropdownMenu = styled.ul<{ $open: boolean }>`
   position: absolute;
   top: 100%;
@@ -71,10 +78,12 @@ const DropdownMenu = styled.ul<{ $open: boolean }>`
   }
 `;
 
+// Body container for sidebar and main content
 const BodyContainer = styled.div<{}>`
   display: flex;
 `;
 
+// Sidebar navigation styling
 const SideBar = styled.ul<{}>`
   position: sticky;
   height: calc(100vh - ${headerHeight}rem);
@@ -121,24 +130,33 @@ const SideBar = styled.ul<{}>`
   }
 `;
 
+// Main content area styling
 const Main = styled.main``;
 
+// List of available themes for dropdown
 const themeItems = [
   { name: "Light", theme: themes.light },
   { name: "dark", theme: themes.dark },
   { name: "red", theme: themes.red },
 ];
 
+// Main layout component
 const AppLayout: React.FC = () => {
+  // State for dropdown menu
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  // Theme setter from context
   const { setAppTheme } = useAppTheme();
+
+  // Handle theme selection from dropdown
   const handleClickThemeItem = (theme: DefaultTheme) => {
     setDropdownOpen(false);
     setAppTheme(theme);
   };
 
+  // Render layout
   return (
     <>
+      {/* Header with logo and theme dropdown */}
       <Header>
         <Logo>
           Theme Switcher <RiImageCircleFill />
@@ -163,6 +181,7 @@ const AppLayout: React.FC = () => {
           </DropdownMenu>
         </DropdownContainer>
       </Header>
+      {/* Body with sidebar and main content */}
       <BodyContainer>
         <SideBar>
           <li>
